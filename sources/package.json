@@ -1,0 +1,28 @@
+{
+  "name": "sources",
+  "version": "1.0.0",
+  "description": "sources smart contract and build by truffle",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/pxbao-itus/erc-token"
+  },
+  "keywords": [
+    "erc",
+    "smart",
+    "contract",
+    "token",
+    "nft"
+  ],
+  "author": "Bao Phan Xuan",
+  "license": "ISC",
+  "dependencies": {
+    "openzeppelin-solidity": "^4.6.0"
+  }
+}
