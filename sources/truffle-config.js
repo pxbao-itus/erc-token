@@ -42,7 +42,7 @@
  */
 
 require('dotenv').config();
-const { MNEMONIC, PROJECT_ID } = process.env;
+const { MNEMONIC,PRIVATE_KEY2, PROJECT_ID } = process.env;
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
@@ -91,6 +91,15 @@ module.exports = {
       // skipDryRun: true,    // Skip dry run before migrations? (default: false for public nets )
       gas: 3000000,
     },
+    ropstenTest: {
+      provider: () => new HDWalletProvider(PRIVATE_KEY2,`https://ropsten.infura.io/v3/${PROJECT_ID}`),
+      network_id: 3, 
+      // networkCheckTimeout: 10000,       // Goerli's id
+      // confirmations: 2,    // # of confirmations to wait between deployments. (default: 0)
+      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      // skipDryRun: true,    // Skip dry run before migrations? (default: false for public nets )
+      gas: 3000000,
+    }
     //
     // Useful for private networks
     // private: {

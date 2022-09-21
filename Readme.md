@@ -61,7 +61,7 @@ module.exports = {
     networks: {
         ropsten: { // ropsten is alias for network name
             provider: () => new HDWalletProvider(MNEMONIC,`${PROVIDER_URL}${PROJECT_ID}`), // using HDWallet to matching provider, MNEMONIC is private key
-            network_id: 3,      // chain id 
+            network_id: 3,      // network id 
             gas: 30000000,      // gas limit < 4M
         }
     }
@@ -123,11 +123,11 @@ $ ganache-cli --secure --unlock <account or index accout>
 ```
 - Deploying: open new terminal and run
 ```sh
-$ truffle migrate --network development
+$ truffle migrate --reset --network development
 ```
 result:
 ```console
-$ truffle migrate --network development
+$ truffle migrate --reset --network development
 
 Compiling your contracts...
 ===========================
@@ -188,11 +188,11 @@ Summary
 - Recheck private key, provider url, project id, network id, ...
 - Run this command to deploy:
 ```sh
-$ truffle migrate --network <network name in truffle-config.js>
+$ truffle migrate --reset --network <network name in truffle-config.js>
 ```
 - Result
 ```console
-$ truffle migrate --network ropsten
+$ truffle migrate --reset --network ropsten
 
 Compiling your contracts...
 ===========================
@@ -215,9 +215,9 @@ Compiling your contracts...
    - solc: 0.8.1+commit.df193b15.Emscripten.clang
 
 
-Migrations dry-run (simulation)
-===============================
-> Network name:    'ropsten-fork'
+Starting migrations...
+======================
+> Network name:    'ropsten'
 > Network id:      3
 > Block gas limit: 30000000 (0x1c9c380)
 
@@ -227,15 +227,19 @@ Migrations dry-run (simulation)
 
    Replacing 'Swan'
    ----------------
-   > block number:        13018811
-   > block timestamp:     1663727503
+   > transaction hash:    0xfc79f5be065eef6b9b2b3c5e70c98579689c842119298a14f11daee26825c443
+   > Blocks: 1            Seconds: 17
+   > contract address:    0xf64FB9b2631B86eb48e36f90B4096C7d583DF08B
+   > block number:        13018872
+   > block timestamp:     1663728480
    > account:             0x03b6A3df5464aa5EA0A332be96572BC1337B851e
-   > balance:             11.488049905216376052
+   > balance:             11.484271857705797519
    > gas used:            1511219 (0x170f33)
    > gas price:           2.500000007 gwei
    > value sent:          0 ETH
    > total cost:          0.003778047510578533 ETH
 
+   > Saving artifacts
    -------------------------------------
    > Total cost:     0.003778047510578533 ETH
 
@@ -243,4 +247,28 @@ Summary
 =======
 > Total deployments:   1
 > Final cost:          0.003778047510578533 ETH
+```
+## III. Interaction
+- Open new terminal and run:
+```sh
+$ cd sources
+$ truffle console --network <network name>
+```
+- Call to smart contract deployed in network.
+```sh
+> let contract = await Swan.deployed()
+```
+- result contract contains all method defined in smart contract.
+```sh 
+truffle(ropstenTest)> contract.
+contract.__proto__             contract.hasOwnProperty        contract.isPrototypeOf         contract.propertyIsEnumerable
+contract.toLocaleString        contract.toString              contract.valueOf
+
+contract.Approval              contract.Transfer              contract.abi                   contract.address
+contract.allEvents             contract.allowance             contract.approve               contract.balanceOf
+contract.burnTokens            contract.call                  contract.constructor           contract.contract
+contract.decimals              contract.decreaseAllowance     contract.estimateGas           contract.getPastEvents
+contract.getTokensByEth        contract.increaseAllowance     contract.methods               contract.name
+contract.send                  contract.sendTransaction       contract.symbol                contract.totalSupply
+contract.transactionHash       contract.transfer              contract.transferFrom
 ```
