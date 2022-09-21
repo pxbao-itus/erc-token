@@ -23,6 +23,9 @@
   "author": "Bao Phan Xuan",
   "license": "ISC",
   "dependencies": {
-    "openzeppelin-solidity": "^4.6.0"
+    "@truffle/hdwallet-provider": "^2.0.14",
+    "dotenv": "^16.0.2",
+    "openzeppelin-solidity": "^4.6.0",
+    "truffle-hdwallet-provider": "^1.0.17"
   }
 }
