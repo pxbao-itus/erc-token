@@ -3,13 +3,13 @@
 ### 1. Set up project
 - Install necessary packages    
 ``` sh
-> cd sources
+$ cd sources
 ```
 ```sh
-> npm install
+$ npm install
 ```
 ```sh
-> npm install -g truffle
+$ npm install -g truffle
 ```    
 
 
@@ -38,7 +38,7 @@
 ### 3. Deploying to local network
 - Install Ganache-CLI
 ```sh
-> npm install -g ganache-cli
+$ npm install -g ganache-cli
 ```
 ## II. Starting
 ### 1. Configuration
@@ -119,11 +119,11 @@ RPC Listening on 127.0.0.1:8545
 ```
 - Truffle will use ```account[0]``` to deploy contract to local network. If you face error like *"unlock account"* you can run this command to resolve it
 ```sh
-> ganache-cli --secure --unlock <account or index accout>
+$ ganache-cli --secure --unlock <account or index accout>
 ```
-- Deploying
+- Deploying: open new terminal and run
 ```sh
-> truffle migrate --network development
+$ truffle migrate --network development
 ```
 result:
 ```console
@@ -188,7 +188,7 @@ Summary
 - Recheck private key, provider url, project id, network id, ...
 - Run this command to deploy:
 ```sh
-> truffle migrate --network <network name in truffle-config.js>
+$ truffle migrate --network <network name in truffle-config.js>
 ```
 - Result
 ```console
