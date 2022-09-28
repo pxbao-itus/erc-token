@@ -42,7 +42,7 @@
  */
 
 require('dotenv').config();
-const { MNEMONIC,PRIVATE_KEY2, PROJECT_ID, MY_ACCOUNT, PRIVATE_HOST } = process.env;
+const { MNEMONIC,PRIVATE_KEY2, PROJECT_ID, PRIVATE_HOST } = process.env;
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const Web3 = require('web3');
@@ -100,11 +100,19 @@ module.exports = {
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true,    // Skip dry run before migrations? (default: false for public nets )
       gas: 30000000,
+      gasPrice: 5000000000,
     },
     //
     // Useful for private networks
     private: {
       provider: () => new HDWalletProvider(MNEMONIC, PRIVATE_HOST),
+      network_id: '*',   // This network is yours, in the cloud.
+      gas: 30000000,
+      gasPrice : 5000000000,
+      // production: true    // Treats this network as if it was a public net. (default: false)
+    },
+    privateTest: {
+      provider: () => new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/v3/"),
       network_id: '*',   // This network is yours, in the cloud.
       // production: true    // Treats this network as if it was a public net. (default: false)
     }

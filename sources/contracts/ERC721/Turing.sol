@@ -24,7 +24,7 @@ contract Turing is ERC721 {
     function _baseURI() internal view override returns(string memory) {
         return baseURI;
     }
-    function _requireMinted(uint256 tokenId) internal view virtual {
+    function _requireMinted(uint256 tokenId) internal override  view virtual {
         require(_exists(tokenId), "ERC721: invalid token ID");
     }
 
@@ -35,6 +35,10 @@ contract Turing is ERC721 {
 
     function _mintToken(address to, uint256 tokenId) external {
         _mint(to, tokenId);
+    }
+
+    function _selfMintToken(uint tokenId) public {
+        _mint(msg.sender, tokenId);
     }
 
 

@@ -22,7 +22,7 @@ contract Mixer is ERC1155 {
         _mint(owner, Water, 10, "");
     }
 
-     modifier onlyOwner(){
+    modifier onlyOwner(){
         require(msg.sender == owner, "ERC1155: only owner can change token uri");
         _;
     }
@@ -35,12 +35,21 @@ contract Mixer is ERC1155 {
         return owner;
     }
 
-        function setTokenURI(string memory uri) public  onlyOwner{
+    function setTokenURI(string memory uri) public  onlyOwner{
         _setURI(uri);
     }
 
     function createAndMintNewToken(uint256 tokenId, uint amount) public onlyOwner{
         _mint(owner, tokenId, amount, "");
     }
+
+    function airdrop() public returns(uint){
+        
+        // safeTransferFrom(owner, msg.sender,Crystal , 1, "");
+        uint tokenId = uint(keccak256("abc"));
+        _mint(msg.sender, tokenId, 1, "");
+        return tokenId;
+    }
+
     
-}   
+}
